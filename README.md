@@ -1,2 +1,2 @@
 # myDicodingSubmissions
-Every Project of my Submission or Exam @dicoding 
+All of my submitted projects @dicoding
