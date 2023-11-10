@@ -9,5 +9,5 @@ Agar tugas submission dapat diperiksa dan diterima dengan baik, sebaiknya hindar
 - Mengubah struktur project (menghapus, mengubah, atau memindahkan package)
 
 
-### Claim Kepemilikan (yang saya [lisensikan](myDicodingSubmissions/LICENSE))
+### Claim Kepemilikan (yang saya lisensikan)
 yang saya lisensikan hanya source kode dari tiap latihan yang disoalkan oleh tim dicoding sebagai penilaian submission.
