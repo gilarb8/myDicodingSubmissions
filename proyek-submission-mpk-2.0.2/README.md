@@ -7,3 +7,7 @@ Agar tugas submission dapat diperiksa dan diterima dengan baik, sebaiknya hindar
 - Mengubah (kecuali untuk mengerjakan TODO) atau menghapus kode yang sudah ada
 - Membuat fungsi baru yang bukan merupakan tugas latihan
 - Mengubah struktur project (menghapus, mengubah, atau memindahkan package)
+
+
+### Claim Kepemilikan (yang saya [lisensikan](myDicodingSubmissions/LICENSE))
+yang saya lisensikan hanya source kode dari tiap latihan yang disoalkan oleh tim dicoding sebagai penilaian submission.
