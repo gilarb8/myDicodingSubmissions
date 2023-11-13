@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Biography Of Mathematician</string>
+    <string name="nama_profil"> Author: Gillar Ajie Prasatya</string>
+    <string name="email_profil">Email: gillar@tuta.io</string>
+    <string name="foto_profil_description">Foto Profil</string>
+    <string name="gambar_description">Deskripsi gambar</string>
+    <string name="about_button_text">About</string>
+    <string name="back_button_description">Back to Main</string>
+</resources>
