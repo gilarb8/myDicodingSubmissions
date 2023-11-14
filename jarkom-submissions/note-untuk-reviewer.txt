@@ -1,0 +1,32 @@
+---------------------------------------------------------------------------------
+ketika melakukan
+
+npm install
+
+output yang keluar di terminal :
+
+added 50 packages, and audited 51 packages in 2s
+
+3 high severity vulnerabilities
+
+To address all issues, run:
+  npm audit fix
+
+lalu saya lakukan :
+
+npm update
+
+dan outputnya :
+
+added 12 packages, changed 43 packages, and audited 63 packages in 4s
+
+11 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+---------------------------------------------------------------------------------
+untuk run file app.js
+
+saya biasa langsung menggunakan node .
+
+ketika saya coba npm run start juga tetap berjalan normal di http://0.0.0.0:8000

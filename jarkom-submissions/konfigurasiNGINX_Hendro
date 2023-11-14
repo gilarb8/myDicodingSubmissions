@@ -1,0 +1,78 @@
+################################################################
+# Saya Hanya Menggunakan NGINX (OS yg saya gunakan : Debian)   #
+################################################################
+
+Untuk install nginx sendiri saya gunakan binary dari official website nginx,
+karna nginx yang saya install menggunakan command pada apt:
+sudo apt install nginx
+
+Ketika saya melakukan konfigurasi limit access, saya selalu mendapatkan:
+
+502 Bad Gateway pada localhost.
+
+Maka dari itu sebagai gantinya, saya lakukan instalasi dari official websitenya di:
+
+https://nginx.org/en/linux_packages.html?&_ga=2.252314890.286910275.1699953957-1275246793.1699953957#sourcepackages
+
+-------------------------------------------------------------------------------------------
+Saya kemudian membuat file untuk konfigurasi di:
+
+/etc/nginx/nginx.conf (saya membuat file nginx.conf dengan menggunakan touch nginx.conf)
+
+Untuk pre-codenya saya ambil dari nginx.conf.dpkg-dist, lalu saya edit/tambah
+di dalam blok kode http{} saya berikan konfigurasi servernya untuk menjalankan Reverse Proxy Server dan Limit Access.
+
+Sebelum running saya juga harus buat 2 file (karna diminta oleh sistemnya)
+mime.types & fastcgi_params yang isinya saya copy paste juga dari masing-masing file mime.types.dpkg-dist & fastcgi_params.dpkg-dist        
+	
+Ini untuk konfigurasi / semua kode yang ada di dalam file nginx.conf:
+
+user  nginx;
+worker_processes  auto;
+
+error_log  /var/log/nginx/error.log notice;
+pid        /var/run/nginx.pid;
+
+
+events {
+    worker_connections  1024;
+}
+
+
+http {
+    include       /etc/nginx/mime.types;
+    default_type  application/octet-stream;
+
+    log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+                      '$status $body_bytes_sent "$http_referer" '
+                      '"$http_user_agent" "$http_x_forwarded_for"';
+
+    access_log  /var/log/nginx/access.log  main;
+
+    sendfile        on;
+    #tcp_nopush     on;
+
+    keepalive_timeout  65;
+
+    #gzip  on;
+
+    include /etc/nginx/conf.d/*.conf;
+  
+    #ini yang saya tambah untuk konfigurasi Reverse Proxy Server dan Limit Access
+    
+    limit_req_zone $binary_remote_addr zone=mylimit:10m rate=6r/m;
+    
+    server {
+    	listen 3000;
+    	server_name localhost;
+    	
+    	location / {
+    		limit_req zone=mylimit burst=6 nodelay;
+    		proxy_pass http://127.0.0.1:8000;
+    		proxy_set_header Host $host;
+    		proxy_set_header X-Real-IP $remote_addr;
+    		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    		proxy_set_header X-Forwarded-Proto $scheme;
+    	}
+    }
+}
